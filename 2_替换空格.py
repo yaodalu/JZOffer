@@ -13,5 +13,6 @@ class Solution:
 if __name__ == "__main__":
     s = "we are happy"
     solution = Solution()
+    print solution.replaceSpace1(s)
     print solution.replaceSpace2(s)
-    
+    print s                                 #str不可变
