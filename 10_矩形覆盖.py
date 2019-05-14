@@ -25,7 +25,6 @@ class Solution:
             b = res
         return res
             
-        
 if __name__ == "__main__":
     solution = Solution()
     print solution.rectCover1(4)
