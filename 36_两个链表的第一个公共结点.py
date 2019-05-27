@@ -3,22 +3,23 @@ class ListNode:
     def __init__(self, x):
         self.val = x
         self.next = None
+        
 class Solution:
     def FindFirstCommonNode(self, pHead1, pHead2):
-        if node1 == None or node2 == None:
+        if pHead1 == None or pHead2 == None:
             return None
-        loop1 = self.getLoopNode(node1)
-        loop2 = self.getLoopNode(node2)
+        loop1 = self.getLoopNode(pHead1)
+        loop2 = self.getLoopNode(pHead2)
         if (loop1 == None) and (loop2 == None):         #有环单向链表与无环单向链表不可能相交
-            return self.noLoop(node1,node2)
+            return self.noLoop(pHead1,pHead2)
         if (loop1 != None) and (loop2 != None):
-            return self.bothLoop(node1,node2,loop1,loop2)
+            return self.bothLoop(pHead1,pHead2,loop1,loop2)
 
     def getLoopNode(self,node):
         """判断链表是否有环，有则返回入环节点"""
-        if node != None:                                #特殊情况判断
-            if node.next != None:
-                if node.next.next == None:
+        if node:                                #特殊情况判断
+            if node.next:
+                if not node.next.next:
                     return None
             else:
                 return None
@@ -99,4 +100,30 @@ class Solution:
                 else:
                     cur1 = cur1.next
             return None
+
+if __name__ == "__main__":
+    ll1 = ListNode(1)                                       #无环链表 1->2->3->4
+    ll1.next = ListNode(2)
+    ll1.next.next = ListNode(3)
+    ll1.next.next.next = ListNode(4)
+
+    ll2 = ListNode(1)                                       #有环链表 1->2->3->4->5->3
+    ll2.next = ListNode(2)
+    ll2.next.next = ListNode(3)
+    ll2.next.next.next = ListNode(4)
+    ll2.next.next.next.next = ListNode(5)
+    ll2.next.next.next.next.next = ll2.next.next
+
+    ll3 = ListNode(1)                                       #有环链表 1->2->3->4->3
+    ll3.next = ListNode(2)
+    ll3.next.next = ListNode(3)
+    ll3.next.next.next = ListNode(4)
+    ll3.next.next.next.next = ll3.next.next
+
+    print Solution().getLoopNode(ll1) is None
+    print Solution().getLoopNode(ll2).val
+    print Solution().getLoopNode(ll3).val
+
+    print Solution().FindFirstCommonNode(ll2,113)
+
         
