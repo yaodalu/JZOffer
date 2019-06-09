@@ -13,7 +13,7 @@ class Solution:
         symInOrder =  self.inOrderSymmetricRecur(pRoot,nodeList2)
         return inOrder == symInOrder
     
-    def inOrderRecur(self,pRoot,nodeList):
+    def inOrderRecur(self,pRoot,nodeList=[]):
         """中序遍历列表"""
         if  not pRoot:
             nodeList += ['#']
